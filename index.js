@@ -61,9 +61,10 @@ return res.json(newTask);
 app.put('/update/:id', async  (req,res)=>{
     
     const {id} = req.params;
+    const {done} = req.body;
 const updatedTask = await TodoModel.findByIdAndUpdate({_id: id}, {
     task:req.body.task,
-    done: true,
+    done,
     completedAt: done ? new Date() : null
 
 }, {new: true});
